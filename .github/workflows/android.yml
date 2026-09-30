@@ -1,0 +1,40 @@
+name: Build Android APK (Maayed Motor)
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Expo CLI and Dependencies
+        run: |
+          npm install -g eas-cli
+          npm install
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Build Android APK
+        run: |
+          npx expo prebuild
+          cd android && ./gradlew assembleRelease
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MaayedMotor-App-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
