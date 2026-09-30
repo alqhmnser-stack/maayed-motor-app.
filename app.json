@@ -4,7 +4,6 @@
     "slug": "maayed-motor-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
       "resizeMode": "contain",
@@ -14,13 +13,7 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#150914"
-      },
       "package": "com.maayedmotor.app"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
